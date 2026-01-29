@@ -1,0 +1,48 @@
+.lp-wrapper {
+    width: 100%;
+    display: flex;
+    padding: 50px 60px;
+    height: 100vh;
+    align-items: center;
+}
+
+.lp-heading-wrapper {
+    width: 35%;
+    height: auto;
+    max-height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f3f391;
+    padding: 50px 20px 30px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.lp-heading {
+    text-align: center;
+    color: #57B9FF;
+}
+.lp-heading-logo {
+    width: 80px;
+    height: 80px;
+}
+.lp-heading-desc {
+    padding-top: 20px;
+    line-height: 1.5;
+    text-align: justify;
+    font-weight: 300;
+    color: #484848;
+}
+.lp-image-wrapper {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+}
+
+.lp-image {
+    width: auto;
+    max-width: 800px;
+    height: auto;
+    /* margin-top: -100px; */
+}

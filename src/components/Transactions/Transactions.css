@@ -1,0 +1,15 @@
+.transaction-list-heading {
+    font-size: 30px;
+}
+
+.transaction-list {
+    margin-top: 20px;
+}
+
+.transaction-list-item {
+    list-style: none;
+    border-bottom: 1px solid #cbcbcb;
+    padding: 20px 10px 20px 0px;
+    font-size: 15px;
+}
+
