@@ -7,37 +7,34 @@ import DashboardTemplate from "./components/DashboardTemplate/DashboardTemplate"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginRedirect from "./components/LoginRedirect";
-import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from "react-router-dom";
+import LoginAndRegister from "./components/LoginAndRegister/LoginAndRegister";
+import CurrentUserProvider from "./components/CurrentUserContext";
 
 function App() {
 
   return ( 
         <>
-        <Router>
-           <Routes>
-            <Route index element={
-                <LandingPage /> }/>
-            <Route path="dashboard/overview" element={
-                <ProtectedRoute>
+        <CurrentUserProvider>
+         <Router>
+            <Routes>
+               <Route index element={
+                  <LoginAndRegister /> }/>
+               <Route path="dashboard/overview" element={
                   <DashboardTemplate>
                      <Overview />
-                  </DashboardTemplate>
-                </ProtectedRoute> }/>
-            <Route path="dashboard/transactions" element={
-               <ProtectedRoute>
+                  </DashboardTemplate> }/>
+               <Route path="dashboard/transactions" element={
                   <DashboardTemplate>
                      <Transactions />
-                  </DashboardTemplate>
-                </ProtectedRoute>}/>
-            <Route path="dashboard/profile" element={
-                <ProtectedRoute>
+                  </DashboardTemplate>}/>
+               <Route path="dashboard/profile" element={
                   <DashboardTemplate>
                      <Profile />
-                  </DashboardTemplate>
-                </ProtectedRoute>}/>
-          </Routes>
-        </Router>   
+                  </DashboardTemplate> }/>
+            </Routes>
+            </Router>   
+         </CurrentUserProvider>
         </>
   )
 }

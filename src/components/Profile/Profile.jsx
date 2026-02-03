@@ -1,14 +1,17 @@
-import { useAuth0 } from '@auth0/auth0-react'
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 
 export default function Profile() {
-    const { user, isAuthenticated } = useAuth0();
+    const { currentUser } = useContext(CurrentUserContext);
+
     return (
-        isAuthenticated && (
-            <div>
-                {user?.picture && <img src={user.picture} alt={user.name}/>}
-                <h2>{user?.name}</h2>
-            {Object.keys(user).map((objKey, i) => <li key={i}>{objKey} : {user[objKey]} </li>)}
-            </div>
-        )
+        <>
+            { currentUser.token ? 
+            <>
+                <h1>Profile Content</h1>
+            </> 
+
+        : <Navigate to="/" replace /> }   
+        </>
     );
 }

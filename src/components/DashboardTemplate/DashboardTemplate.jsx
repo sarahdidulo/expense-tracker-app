@@ -2,13 +2,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoadingComponent from "../LoadingComponent";
 import "./DashboardTemplate.css";
 import { NavLink } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AddExpense from "../AddExpense/AddExpense";
+import { CurrentUserContext } from "../CurrentUserContext";
+import { Navigate } from "react-router-dom";
 
 export default function DashboardTemplate({children}) {
 
     const { user } = useAuth0();
     const [ userDetails, setUserDetails ] = useState({});
+    const { currentUser } = useContext(CurrentUserContext);
     
     function addExpenseModal () {
         return null;
@@ -25,7 +28,9 @@ export default function DashboardTemplate({children}) {
 
     return (
         <>
-            <LoadingComponent />
+        { currentUser.token ?
+        <>
+        <LoadingComponent />
         <main className="db-wrapper">
             <div className="db-wrapper-inner">
                 <div className="db-nav-wrapper">
@@ -56,9 +61,10 @@ export default function DashboardTemplate({children}) {
                     {children}
                 </div>
             </div>
-           
-            </main> 
+        </main> 
         </>
-       
+         : <Navigate to="/" replace />
+             }
+        </>     
     );
 }
