@@ -23,7 +23,7 @@ export default function AddExpense() {
             body: JSON.stringify(transaction)
         } 
         try {
-            const response = await fetch("http://localhost:3000/be-et/transactions/add-expense", requestOptions);
+            const response = await fetch("http://localhost:4000/be-et/transactions/add-expense", requestOptions);
             const data = await response.json();
             console.log(data);
         } catch (err) {

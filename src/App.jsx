@@ -9,13 +9,13 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import LoginRedirect from "./components/LoginRedirect";
 import { Navigate } from "react-router-dom";
 import LoginAndRegister from "./components/LoginAndRegister/LoginAndRegister";
-import CurrentUserProvider from "./components/CurrentUserContext";
+import { CurrentUserProvider } from "./components/CurrentUserContext";
 
 function App() {
 
   return ( 
         <>
-        <CurrentUserProvider>
+        {/* <CurrentUserProvider> */}
          <Router>
             <Routes>
                <Route index element={
@@ -34,9 +34,9 @@ function App() {
                   </DashboardTemplate> }/>
             </Routes>
             </Router>   
-         </CurrentUserProvider>
+         {/* </CurrentUserProvider> */}
         </>
   )
 }
 
-export default App
+export default App;
