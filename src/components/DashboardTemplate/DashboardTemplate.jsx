@@ -6,12 +6,14 @@ import { useState, useEffect, useContext } from "react";
 import AddExpense from "../AddExpense/AddExpense";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { Navigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 export default function DashboardTemplate({children}) {
-
     const [ userDetails, setUserDetails ] = useState({});
     const { currentUser } = useContext(CurrentUserContext);
+    const [ cookies ] = useCookies(['token'])
     
+    // console.log("Dashboard", currentUser);
     function addExpenseModal () {
         return null;
     }
@@ -19,15 +21,15 @@ export default function DashboardTemplate({children}) {
     // EDIT USE EFFECT WITH DETAILS FROM CURRENT USER
     useEffect(() => {
         setUserDetails({
-            name: user.given_name,
-            fullname: user.name,
-            email: user.email,
-            image: user.picture
+            name: currentUser.name
+            // fullname: user.name,
+            // image: user.picture
         })
     },[])
 
     return (
         <>
+        {/* {console.log(cookies)} */}
         { currentUser.token ?
         <>
         <LoadingComponent />
@@ -40,7 +42,7 @@ export default function DashboardTemplate({children}) {
                         <h1>Expense Tracker Dashboard</h1>
                     </a>                   
                     <a className="db-nav-profile-img-wrapper" href="/profile" >
-                        <img className="db-nav-profile-img" src={userDetails.image} alt="Profile Picture"/>
+                        {/* <img className="db-nav-profile-img" src={userDetails.image} alt="Profile Picture"/> */}
                         <p className="db-nav-profile-greeting">Hi {userDetails.name}!</p>
                     </a>
                     <nav className="db-sidenav-wrapper">

@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../CurrentUserContext';
+import { useCookies } from 'react-cookie';
 
 export default function LoginAndRegister() {
     
@@ -13,9 +14,12 @@ export default function LoginAndRegister() {
     const [validatePassword, setValidatePassword] = useState(null);
     const { currentUser, logUserDetails } = useContext(CurrentUserContext);
     const navigate = useNavigate();
+    const [cookies, setCookie, removeCookie] = useCookies(['token'])
+
 
     async function login(e) {
         e.preventDefault();
+        setCookie('Sample', 'sample');
         console.log(`entered login function. email: ` + email + ` | password` + password)
         const requestOptions = {
             method: 'POST',
@@ -32,6 +36,8 @@ export default function LoginAndRegister() {
         try {
             const response = await fetch("http://localhost:4000/be-et/auth/login", requestOptions);
             const data = await response.json();
+            console.log(cookies);
+            logUserDetails(data.user._id, data.user.name, cookies.token);
             navigate('/dashboard/overview');
         } catch (err) {
             console.log(err);
