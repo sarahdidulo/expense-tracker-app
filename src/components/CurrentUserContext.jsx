@@ -4,9 +4,9 @@ export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState({
-        id: null,
-        name: null,
-        token: null
+        id: '',
+        name: '',
+        token: ''
     });
 
     const logUserDetails = (id, name, token) => {
@@ -19,15 +19,19 @@ export const CurrentUserProvider = ({children}) => {
 
     const clearLoggedUser = () => {
         setCurrentUser({
-            id: null,
-            name: null,
-            token: null
+            id: '',
+            name: '',
+            token: ''
         })
     }
     
     return (
-    <CurrentUserProvider value={{currentUser, logUserDetails, clearLoggedUser}}>
-        {children}
-    </CurrentUserProvider>
+        <>
+        {alert('slnlknlank')}
+            <CurrentUserContext.Provider value={{currentUser, logUserDetails, clearLoggedUser}}>
+                {children}
+            </CurrentUserContext.Provider>
+        </>
+       
     );
 }

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../CurrentUserContext';
 
 export default function LoginAndRegister() {
+    
     //state current form is login or sign up form
     const [currentForm, setCurrentForm] = useState('login form');
     const [name, setName] = useState('');

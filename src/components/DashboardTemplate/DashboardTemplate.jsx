@@ -9,7 +9,6 @@ import { Navigate } from "react-router-dom";
 
 export default function DashboardTemplate({children}) {
 
-    const { user } = useAuth0();
     const [ userDetails, setUserDetails ] = useState({});
     const { currentUser } = useContext(CurrentUserContext);
     
@@ -17,6 +16,7 @@ export default function DashboardTemplate({children}) {
         return null;
     }
 
+    // EDIT USE EFFECT WITH DETAILS FROM CURRENT USER
     useEffect(() => {
         setUserDetails({
             name: user.given_name,
