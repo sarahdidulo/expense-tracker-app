@@ -1,21 +1,25 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import LoadingComponent from "../LoadingComponent";
 import "./DashboardTemplate.css";
 import { NavLink } from "react-router";
 import { useState, useEffect, useContext } from "react";
 import AddExpense from "../AddExpense/AddExpense";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { Navigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export default function DashboardTemplate({children}) {
     const [ userDetails, setUserDetails ] = useState({});
     const { currentUser } = useContext(CurrentUserContext);
-    const [ cookies ] = useCookies(['token'])
+    const navigate = useNavigate();
     
     // console.log("Dashboard", currentUser);
     function addExpenseModal () {
         return null;
+    }
+
+    function logout () {   
+        sessionStorage.clear(); 
+        navigate('/');
+        
     }
 
     // EDIT USE EFFECT WITH DETAILS FROM CURRENT USER
@@ -29,10 +33,8 @@ export default function DashboardTemplate({children}) {
 
     return (
         <>
-        {/* {console.log(cookies)} */}
         { currentUser.token ?
         <>
-        <LoadingComponent />
         <main className="db-wrapper">
             <div className="db-wrapper-inner">
                 <div className="db-nav-wrapper">
@@ -57,6 +59,7 @@ export default function DashboardTemplate({children}) {
                         </NavLink>
                     </nav>
                     <AddExpense />
+                    <button className="db-logout-button" onClick={logout}>Log Out</button>
                 </div>
                 </div>
                 <div className="db-content">
@@ -65,8 +68,8 @@ export default function DashboardTemplate({children}) {
             </div>
         </main> 
         </>
-         : <Navigate to="/" replace />
-             }
+          : <Navigate to="/" replace />
+        } 
         </>     
     );
 }

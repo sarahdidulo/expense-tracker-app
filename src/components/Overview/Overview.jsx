@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { CurrentUserContext } from "../CurrentUserContext";
 
 export default function Overview() {
 
@@ -7,12 +8,7 @@ export default function Overview() {
 
     return (
         <>
-            { currentUser.token ? 
-            <>
-                <h1>Overview Content</h1>
-            </> 
-
-        : <Navigate to="/" replace /> }   
+            <h1>Overview Content</h1>
         </>
  
     );
