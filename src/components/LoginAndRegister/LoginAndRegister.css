@@ -1,0 +1,61 @@
+.log-reg-form-wrapper {
+    width: 100%;
+    padding-top: 15px;
+}
+
+.log-reg-form-wrapper form {
+    width: 100%;
+    font-size: 15px;
+}
+
+.log-reg-form-wrapper h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    /* font-weight: 400; */
+}
+.log-reg-form-wrapper label {
+    font-size: 15px;
+    padding-bottom: 10px;
+    display: block;
+}
+
+.log-reg-form-wrapper form input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 3px;
+}
+
+.log-reg-link-group {
+    margin-top: 10px;
+}
+
+.log-reg-form-wrapper button {
+    width: auto;
+    /* border: 1px solid lightgray; */
+    height: 35px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(99, 198, 231);
+    color: #FFFFFF;
+    border: 1px solid rgb(99, 198, 231);
+}
+
+.log-reg-form-link {
+    margin-left: 10px;
+    /* text-decoration: none; */
+}
+
+/* .sign-up-submit-button {
+    background-color: rgb(99, 198, 231);
+    color: #FFFFFF;
+    border: 1px solid rgb(99, 198, 231);
+}
+
+.login-button {
+    background-color: rgb(99, 198, 231);
+    color: #FFFFFF;
+    border: 1px solid rgb(99, 198, 231);
+} */

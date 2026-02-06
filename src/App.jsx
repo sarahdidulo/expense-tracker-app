@@ -2,7 +2,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Overview from "./components/Overview/Overview";
 import Transactions from "./components/Transactions/Transactions";
 import Profile from "./components/Profile/Profile";
-import "./assets/styles/main.css";
+// import "./assets/styles/main.css";
 import DashboardTemplate from "./components/DashboardTemplate/DashboardTemplate";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -17,7 +17,7 @@ function App() {
          <Router>
             <Routes>
                <Route index element={
-                  <LoginAndRegister /> }/>
+                  <LandingPage /> }/>
                <Route path="dashboard/overview" element={
                   <DashboardTemplate>
                      <Overview />

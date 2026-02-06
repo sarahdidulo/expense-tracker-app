@@ -6,13 +6,11 @@ export const CurrentUserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState("");
 
     const logUserDetails = (id, name, token) => {
-        // console.log(name)
         setCurrentUser({
             id: id,
             name: name,
             token: token
         });
-        // console.log("current user", currentUser);
     }
 
     const clearLoggedUser = () => {

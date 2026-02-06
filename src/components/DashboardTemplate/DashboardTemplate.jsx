@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function DashboardTemplate({children}) {
     const [ userDetails, setUserDetails ] = useState({});
-    const { currentUser } = useContext(CurrentUserContext);
+    const { currentUser, clearLoggedUser } = useContext(CurrentUserContext);
     const navigate = useNavigate();
     
     // console.log("Dashboard", currentUser);
@@ -18,8 +18,14 @@ export default function DashboardTemplate({children}) {
 
     function logout () {   
         sessionStorage.clear(); 
+        clearLoggedUser();
         navigate('/');
         
+    }
+
+     function addExpenseModal () {
+        var modal = document.getElementById("add-expense-wrapper");
+        modal.classList.toggle("display");
     }
 
     // EDIT USE EFFECT WITH DETAILS FROM CURRENT USER
@@ -37,6 +43,7 @@ export default function DashboardTemplate({children}) {
         <>
         <main className="db-wrapper">
             <div className="db-wrapper-inner">
+                <AddExpense />
                 <div className="db-nav-wrapper">
                     <div className="db-nav-wrapper-inner">
                         <a className="db-nav-db-link" href="/" >
@@ -58,7 +65,12 @@ export default function DashboardTemplate({children}) {
                             Profile
                         </NavLink>
                     </nav>
-                    <AddExpense />
+                    <div className="db-nav-add-transaction" >
+                        <button id="db-add-expense-button" className="db-nav-add-transaction-button" onClick={addExpenseModal}>
+                        <img className="db-nav-plus-icon" src="./../src/assets/images/plus-icon.png" alt="Plus icon" />
+                            Add a Transaction
+                        </button>
+                    </div>
                     <button className="db-logout-button" onClick={logout}>Log Out</button>
                 </div>
                 </div>

@@ -12,6 +12,10 @@ export default function AddExpense() {
         description: ''
     });
 
+    function removeModalDisplay () {
+        var modal = document.getElementById("add-expense-wrapper");
+        modal.classList.remove("display");
+    }
     async function addExpenseTransaction (e) {
         e.preventDefault();
         console.log(transaction)
@@ -31,28 +35,24 @@ export default function AddExpense() {
         }
     }
 
-    function addExpenseModal () {
-        var modal = document.getElementById("add-expense-wrapper");
-        modal.classList.add("display");
-    }
+   
 
     return (
         // <h1>hello</h1>
         <>
-            {/* got styles from dashboardtemplate for the button */}
-            <div className="db-nav-add-transaction" >
-                <button className="db-nav-add-transaction-button" onClick={addExpenseModal}>
-                <img className="db-nav-plus-icon" src="./../src/assets/images/plus-icon.png" alt="Plus icon" />
-                    Add a Transaction
-                </button>
-            </div>
+            {/* got styles from dashboardtemplate for the button */} 
             <div id="add-expense-wrapper" className="add-expense-wrapper">
-                <form method="post" onSubmit={addExpenseTransaction}>
+                <div className="close-button" onClick={removeModalDisplay}>
+                    <img src="/../src/assets/images/close-button.png" alt=""/>
+                </div>
+                <form className="add-expense-form" method="post" onSubmit={addExpenseTransaction}>
+                    <h3 className="add-expense-form-heading">Add a New Transaction</h3>
                     <label htmlFor={id + "-name"}>Name: </label>
                     <input type="text" 
                     id={id + "-name"}
                     name="transaction[name]" 
                     value={transaction.name}
+                    placeholder="Enter a transaction name"
                     onChange={e => setTransaction({...transaction, name: e.target.value})}/>
                     <br/>
 
@@ -73,10 +73,11 @@ export default function AddExpense() {
                     id={id + "-description"}
                     name="transaction[description]" 
                     value={transaction.description}
+                    placeholder="Enter a description"
                     onChange={e => setTransaction({...transaction, description: e.target.value})}/>
                     <br/>
 
-                    <button type="submit" name="Add Expense">Add Expense</button>
+                    <button type="submit" className="add-expense-submit-button" name="Add Expense">Add Expense</button>
                     <br/>
                 </form> 
             </div>

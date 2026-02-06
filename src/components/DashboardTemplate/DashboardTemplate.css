@@ -13,6 +13,7 @@
 }
 .db-wrapper-inner {
     display: flex;
+    position: relative;
 }
 .db-nav-wrapper {
     width: 30%;
@@ -85,4 +86,46 @@
 
 .db-content {
     width: 70%;
+}
+
+.db-nav-add-transaction-button {
+    width: 100%;
+    padding: 15px 10px;
+    color: #EEEEEE;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #57B9FF;
+    background-color: #57B9FF;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.db-nav-plus-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.db-nav-add-transaction-button:hover {
+    background-color: #7fc7fb;
+}
+
+.db-logout-button {
+    border: 1px solid lightgray;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: gray;
+    transition: background-color 0.5s;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 300;
+}
+
+.db-logout-button:hover {
+    background-color: rgb(250, 123, 123);
 }
