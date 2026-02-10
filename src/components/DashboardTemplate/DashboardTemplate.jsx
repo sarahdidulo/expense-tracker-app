@@ -7,14 +7,19 @@ import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 export default function DashboardTemplate({children}) {
-    const [ userDetails, setUserDetails ] = useState({});
-    const { currentUser, clearLoggedUser } = useContext(CurrentUserContext);
+    const { currentUser, clearLoggedUser, reLogUserDetails } = useContext(CurrentUserContext);
     const navigate = useNavigate();
     
-    // console.log("Dashboard", currentUser);
-    function addExpenseModal () {
-        return null;
+    function checkCurrentUser () {
+        if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
+            reLogUserDetails(sessionStorage.getItem('user_id'), sessionStorage.getItem('name'), sessionStorage.getItem('token'));
+            return true;
+        } else {
+            return false;
+        }    
     }
+
+    // console.log("Dashboard", currentUser);
 
     function logout () {   
         sessionStorage.clear(); 
@@ -28,14 +33,9 @@ export default function DashboardTemplate({children}) {
         modal.classList.toggle("display");
     }
 
-    // EDIT USE EFFECT WITH DETAILS FROM CURRENT USER
-    useEffect(() => {
-        setUserDetails({
-            name: currentUser.name
-            // fullname: user.name,
-            // image: user.picture
-        })
-    },[])
+    useEffect(()=> {
+        checkCurrentUser();
+    }, [])
 
     return (
         <>
@@ -52,7 +52,7 @@ export default function DashboardTemplate({children}) {
                     </a>                   
                     <a className="db-nav-profile-img-wrapper" href="/profile" >
                         {/* <img className="db-nav-profile-img" src={userDetails.image} alt="Profile Picture"/> */}
-                        <p className="db-nav-profile-greeting">Hi {userDetails.name}!</p>
+                        <p className="db-nav-profile-greeting">Hi {currentUser.name}!</p>
                     </a>
                     <nav className="db-sidenav-wrapper">
                         <NavLink to="/dashboard/overview">

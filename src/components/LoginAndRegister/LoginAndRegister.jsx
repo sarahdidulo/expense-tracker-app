@@ -15,6 +15,7 @@ export default function LoginAndRegister() {
     const { currentUser, logUserDetails } = useContext(CurrentUserContext);
     const navigate = useNavigate();
 
+
     async function login(e) {
         e.preventDefault();
         console.log(`entered login function. email: ` + email + ` | password` + password)
@@ -35,6 +36,7 @@ export default function LoginAndRegister() {
             const data = await response.json();
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("user_id", data.user._id);
+            sessionStorage.setItem("name", data.user.name);
             logUserDetails(data.user._id, data.user.name, data.token);
             navigate('/dashboard/overview');
         } catch (err) {
@@ -44,6 +46,7 @@ export default function LoginAndRegister() {
 
     function loginForm () {
         return (
+            <>
             <div className="login-form-wrapper">
                 <h2>Login</h2>
                 <form className="login-form" onSubmit={login}>
@@ -69,6 +72,7 @@ export default function LoginAndRegister() {
                     </div>       
                 </form>
             </div>
+            </>
         );    
     }
 

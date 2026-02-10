@@ -10,7 +10,7 @@ export default function Transactions() {
 
         async function getTransactions (e) {
             try {
-                const response = await fetch("http://localhost:3000/be-et/transactions/all");
+                const response = await fetch("http://localhost:4000/be-et/transactions/all");
                 const data = await response.json();
                 setTransactions(data);
                 // mapData();

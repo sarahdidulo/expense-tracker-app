@@ -20,11 +20,19 @@ export const CurrentUserProvider = ({children}) => {
             token: ''
         })
     }
+
+    const reLogUserDetails = (id, name, token) => {
+        setCurrentUser({
+            id: id,
+            name: name,
+            token: token
+        })
+    }
     
     return (
         <>
         {/* {alert('slnlknlank')} */}
-            <CurrentUserContext.Provider value={{currentUser, logUserDetails, clearLoggedUser}}>
+            <CurrentUserContext.Provider value={{currentUser, logUserDetails, clearLoggedUser, reLogUserDetails}}>
                 {children}
             </CurrentUserContext.Provider>
         </>

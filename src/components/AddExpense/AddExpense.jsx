@@ -1,16 +1,30 @@
-import {useId, useState} from "react";
+import {useId, useState, useContext, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./AddExpense.css"
+import "./AddExpense.css";
+import { CurrentUserContext } from "../CurrentUserContext";
+import Uploady from "@rpldy/uploady";
+import UploadButton from "@rpldy/upload-button";
 
 export default function AddExpense() {
+    const { currentUser, reLogUserDetails } = useContext(CurrentUserContext);
     const id = useId();
     const [transaction, setTransaction] = useState({
         name: '',
         category: 'Grocery',
         dateOfTransaction: '',
-        description: ''
+        description: '',
+        transactor_id: currentUser.id
     });
+
+    function checkCurrentUser () {
+        if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
+            reLogUserDetails(sessionStorage.getItem('user_id'), sessionStorage.getItem('name'), sessionStorage.getItem('token'));
+            return true;
+        } else {
+            return false;
+        }    
+    }
 
     function removeModalDisplay () {
         var modal = document.getElementById("add-expense-wrapper");
@@ -30,17 +44,21 @@ export default function AddExpense() {
             const response = await fetch("http://localhost:4000/be-et/transactions/add-expense", requestOptions);
             const data = await response.json();
             console.log(data);
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
         }
     }
 
    
+    useEffect(()=> {
+        checkCurrentUser();
+    }, [])
 
     return (
         // <h1>hello</h1>
         <>
-            {/* got styles from dashboardtemplate for the button */} 
+            {console.log('in add expense', currentUser.id)} 
+
             <div id="add-expense-wrapper" className="add-expense-wrapper">
                 <div className="close-button" onClick={removeModalDisplay}>
                     <img src="/../src/assets/images/close-button.png" alt=""/>
