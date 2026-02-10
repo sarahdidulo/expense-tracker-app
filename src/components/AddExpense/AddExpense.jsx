@@ -3,8 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./AddExpense.css";
 import { CurrentUserContext } from "../CurrentUserContext";
-import Uploady from "@rpldy/uploady";
-import UploadButton from "@rpldy/upload-button";
+// import Uploady from "@rpldy/uploady";
+// import UploadButton from "@rpldy/upload-button";
 
 export default function AddExpense() {
     const { currentUser, reLogUserDetails } = useContext(CurrentUserContext);
@@ -94,7 +94,10 @@ export default function AddExpense() {
                     placeholder="Enter a description"
                     onChange={e => setTransaction({...transaction, description: e.target.value})}/>
                     <br/>
-
+                    {/* <Uploady
+                        destination={{ url: "http://localhost:4000/be-et/transactions/add-expense" }}>
+                        <UploadButton/>
+                    </Uploady> */}
                     <button type="submit" className="add-expense-submit-button" name="Add Expense">Add Expense</button>
                     <br/>
                 </form> 
