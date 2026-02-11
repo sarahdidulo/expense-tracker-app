@@ -5,6 +5,7 @@ import AddExpense from "../AddExpense/AddExpense";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import logo from './../src/assets/images/expense-tracker-logo.png';
 
 export default function DashboardTemplate({children}) {
     const { currentUser, clearLoggedUser, reLogUserDetails } = useContext(CurrentUserContext);
@@ -47,7 +48,7 @@ export default function DashboardTemplate({children}) {
                 <div className="db-nav-wrapper">
                     <div className="db-nav-wrapper-inner">
                         <a className="db-nav-db-link" href="/" >
-                        <img className="db-nav-db-link-logo" src="./../src/assets/images/expense-tracker-logo.png" alt="Expense Tracker Logo"/>
+                        <img className="db-nav-db-link-logo" src={logo} alt="Expense Tracker Logo"/>
                         <h1>Expense Tracker Dashboard</h1>
                     </a>                   
                     <a className="db-nav-profile-img-wrapper" href="/profile" >
