@@ -5,7 +5,7 @@ import AddExpense from "../AddExpense/AddExpense";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import logo from './../src/assets/images/expense-tracker-logo.png';
+import logo from '/src/assets/images/expense-tracker-logo.png';
 
 export default function DashboardTemplate({children}) {
     const { currentUser, clearLoggedUser, reLogUserDetails } = useContext(CurrentUserContext);
