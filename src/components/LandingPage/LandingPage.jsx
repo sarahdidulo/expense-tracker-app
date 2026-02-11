@@ -3,6 +3,7 @@ import { Navigate } from 'react-router';
 import { CurrentUserContext } from '../CurrentUserContext';
 import './LandingPage.css'
 import LoginAndRegister from '../LoginAndRegister/LoginAndRegister';
+import logo from '/src/assets/images/expense-tracker-logo.png';
 
 export default function LandingPage(){
 
@@ -15,7 +16,7 @@ export default function LandingPage(){
                 {!currentUser.name && (
                 <>
                 <div className="lp-heading-wrapper">
-                        <img className="lp-heading-logo" src="./../src/assets/images/expense-tracker-logo.png" alt="Expense Tracker Logo" />
+                        <img className="lp-heading-logo" src={logo} alt="Expense Tracker Logo" />
                         <h1 className="lp-heading">Expense Tracker</h1>
                         <p className="lp-heading-desc">The Expense Tracker App is a comprehensive, user-friendly mobile application designed to simplify personal financial management by replacing manual, error-prone, or paper-based methods with digital, automated tracking. </p>
                         <LoginAndRegister />
