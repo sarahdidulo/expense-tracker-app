@@ -6,6 +6,7 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import logo from '/src/assets/images/expense-tracker-logo.png';
+import plusIcon from '/src/assets/images/plus-icon.png';
 
 export default function DashboardTemplate({children}) {
     const { currentUser, clearLoggedUser, reLogUserDetails } = useContext(CurrentUserContext);
@@ -68,7 +69,7 @@ export default function DashboardTemplate({children}) {
                     </nav>
                     <div className="db-nav-add-transaction" >
                         <button id="db-add-expense-button" className="db-nav-add-transaction-button" onClick={addExpenseModal}>
-                        <img className="db-nav-plus-icon" src="./../src/assets/images/plus-icon.png" alt="Plus icon" />
+                        <img className="db-nav-plus-icon" src={plusIcon} alt="Plus icon" />
                             Add a Transaction
                         </button>
                     </div>

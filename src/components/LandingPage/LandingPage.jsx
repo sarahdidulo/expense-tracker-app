@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../CurrentUserContext';
 import './LandingPage.css'
 import LoginAndRegister from '../LoginAndRegister/LoginAndRegister';
 import logo from '/src/assets/images/expense-tracker-logo.png';
+import lpImage from './../src/assets/images/lp-image-expense.png';
 
 export default function LandingPage(){
 
@@ -22,7 +23,7 @@ export default function LandingPage(){
                         <LoginAndRegister />
                     </div>
                     <div className="lp-image-wrapper">
-                        <img className="lp-image" src="./../src/assets/images/lp-image-expense.png" alt="Expense Tracker Landing Page image" />
+                        <img className="lp-image" src={lpImage} alt="Expense Tracker Landing Page image" />
                     </div>
                 </>
                     )}
