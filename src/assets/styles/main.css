@@ -13,3 +13,18 @@ body {
   color: #323232;
 }
 
+.display-none {
+  display: none !important;
+}
+
+.display-block {
+  display: block !important;
+}
+
+.opacity-set {
+  opacity: 1 !important;
+}
+
+.opacity-unset {
+  opacity: 0 !important;
+}

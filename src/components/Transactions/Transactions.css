@@ -3,7 +3,7 @@
 }
 
 .transaction-list {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .transaction-list-item {
@@ -13,3 +13,12 @@
     font-size: 15px;
 }
 
+.transaction-list-item-text {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 2.5px;
+    color: rgb(111, 111, 111);
+}
+.transaction-list-item-text:first-child{
+    margin-top: 0; 
+}

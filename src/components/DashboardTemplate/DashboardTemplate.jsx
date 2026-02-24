@@ -5,12 +5,19 @@ import AddExpense from "../AddExpense/AddExpense";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import profileIconBlue from '/src/assets/images/profile-icon-blue.png';
+import profileIconWhite from '/src/assets/images/profile-icon-white.png';
+import transactionsIconBlue from '/src/assets/images/receipt-blue.png';
+import transactionsIconWhite from '/src/assets/images/receipt-white.png';
+import overviewIconBlue from '/src/assets/images/pie-chart-blue.png';
+import overviewIconWhite from '/src/assets/images/pie-chart-white.png';
 import logo from '/src/assets/images/expense-tracker-logo.png';
 import plusIcon from '/src/assets/images/plus-icon.png';
 
 export default function DashboardTemplate({children}) {
     const { currentUser, clearLoggedUser, reLogUserDetails } = useContext(CurrentUserContext);
     const navigate = useNavigate();
+    const [activeTab, setActiveTab] = useState('overview');
     
     function checkCurrentUser () {
         if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
@@ -20,8 +27,6 @@ export default function DashboardTemplate({children}) {
             return false;
         }    
     }
-
-    // console.log("Dashboard", currentUser);
 
     function logout () {   
         sessionStorage.clear(); 
@@ -35,9 +40,35 @@ export default function DashboardTemplate({children}) {
         modal.classList.toggle("display");
     }
 
-    useEffect(()=> {
-        checkCurrentUser();
-    }, [])
+    // function NavImage ({navlink, active}) {
+    //     let source;
+    //     if(navlink === 'overview') {
+    //         source = {overviewIconBlack};
+    //     } else if(navlink === 'transactions'){
+    //         source = {transactionsIconBlack};
+    //     } else if(navlink === 'profile') {
+    //         source = {profileIconBlack}
+    //     }
+    //     return <img src={source} alt={navlink}/>
+    // }
+
+    useEffect(()=>{
+        console.log("use effect")
+        setActiveTab(()=>{
+            let path = window.location.pathname;
+            if(path.includes('overview')) {
+                console.log('overview tab')
+                return 'overview';
+            } else if(path.includes('transactions')) {
+                console.log('transactions tab')
+                return transactions;
+            } else if(path.includes('profile')) {
+                console.log('profile tab')
+                return 'profile';
+            }
+        });
+    }, [window.location.pathname])
+    
 
     return (
         <>
@@ -57,13 +88,16 @@ export default function DashboardTemplate({children}) {
                         <p className="db-nav-profile-greeting">Hi {currentUser.name}!</p>
                     </a>
                     <nav className="db-sidenav-wrapper">
-                        <NavLink to="/dashboard/overview">
+                        <NavLink to="/dashboard/overview" id="overview" className="db-nav-link">
+                            <img src={activeTab === 'overview' ? overviewIconWhite : overviewIconBlue} alt />
                             Overview
                         </NavLink>
-                        <NavLink to="/dashboard/transactions">
+                        <NavLink to="/dashboard/transactions" id="transactions" className="db-nav-link">
+                            <img src={activeTab === 'transactions' ? transactionsIconWhite : transactionsIconBlue} alt />
                             Transactions
                         </NavLink>
-                        <NavLink to="/dashboard/profile">
+                        <NavLink to="/dashboard/profile" id="profile" className="db-nav-link">
+                            <img src={activeTab === 'profile' ? profileIconWhite: profileIconBlue} alt />
                             Profile
                         </NavLink>
                     </nav>

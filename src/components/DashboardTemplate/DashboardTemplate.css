@@ -1,7 +1,7 @@
 .db-wrapper {
     display: flex;
     width: 100%;
-    padding: 50px 60px;
+    padding: 50px 60px 50px 40px;
     flex-direction: column;
     letter-spacing: 0.1px;
     position: relative;
@@ -24,7 +24,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
     background-color: #EEEEEE;
     height: auto;
     flex-direction: column;
@@ -84,8 +85,23 @@
     color: #EEEEEE;
 }
 
+.db-nav-link.active {
+    background-color: #57B9FF;
+    color: #EEEEEE;
+}
+
+.db-nav-link {
+    display: flex;
+    align-items: center;
+}
+.db-sidenav-wrapper img {
+    width: 23px;
+    height: 23px;
+    margin-right: 10px;
+}
 .db-content {
     width: 70%;
+    padding-left: 30px;
 }
 
 .db-nav-add-transaction-button {

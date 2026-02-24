@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { StrictMode } from 'react';
 import { CurrentUserProvider } from "./components/CurrentUserContext";
-import { CookiesProvider } from 'react-cookie';
+import { BannerProvider } from './components/Banner/BannerContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <StrictMode>
-      <CookiesProvider>
-        <CurrentUserProvider>
+      <CurrentUserProvider>
+        <BannerProvider>
           <App />
-        </CurrentUserProvider>
-      </CookiesProvider>
+        </BannerProvider>
+      </CurrentUserProvider>
     </StrictMode>,
 )

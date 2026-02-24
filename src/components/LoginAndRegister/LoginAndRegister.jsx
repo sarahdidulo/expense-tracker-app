@@ -1,7 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../CurrentUserContext';
 import './LoginAndRegister.css';
+import SuccessBanner from '../Banner/SuccessBanner';
+import InvalidBanner from '../Banner/InvalidBanner';
 
 export default function LoginAndRegister() {
     
@@ -13,6 +15,8 @@ export default function LoginAndRegister() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [validatePassword, setValidatePassword] = useState(null);
     const { currentUser, logUserDetails } = useContext(CurrentUserContext);
+    const [ successMessage, setSuccessMessage ] = useState('');
+
     const navigate = useNavigate();
 
 
@@ -100,6 +104,11 @@ export default function LoginAndRegister() {
                 const data = await response.json();
                 setValidatePassword(null);
                 console.log(data);
+                if(data.success === "Success") {
+                    setSuccessMessage(<SuccessBanner />)
+                } else {
+                    setSuccessMessage(<InvalidBanner />)
+                }
             } catch (err) {
                 console.log(err);
             }
@@ -152,11 +161,16 @@ export default function LoginAndRegister() {
             </div>
         );
     }
-    
 
+    // useEffect(()=>{
+    //     setSuccessMessage('');
+    // })
     return (
-        <div className="log-reg-form-wrapper">
-           {currentForm === 'login form' ? loginForm() : signUpForm() }
-        </div>
+        <>  
+         {successMessage}
+            <div className="log-reg-form-wrapper">
+            {currentForm === 'login form' ? loginForm() : signUpForm() }
+            </div>
+        </>     
     );
 }

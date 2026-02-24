@@ -3,11 +3,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./AddExpense.css";
 import { CurrentUserContext } from "../CurrentUserContext";
-// import Uploady from "@rpldy/uploady";
-// import UploadButton from "@rpldy/upload-button";
+import SuccessBanner from '../Banner/SuccessBanner';
+import InvalidBanner from '../Banner/InvalidBanner';
 
 export default function AddExpense() {
-    const { currentUser, reLogUserDetails } = useContext(CurrentUserContext);
+    const { currentUser, reLogUserDetails, getTransactions } = useContext(CurrentUserContext);
     const id = useId();
     const [transaction, setTransaction] = useState({
         name: '',
@@ -16,6 +16,7 @@ export default function AddExpense() {
         description: '',
         transactor_id: currentUser.id
     });
+    const [ successMessage, setSuccessMessage ] = useState('');
 
     function checkCurrentUser () {
         if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
@@ -32,6 +33,9 @@ export default function AddExpense() {
     }
     async function addExpenseTransaction (e) {
         e.preventDefault();
+        if(successMessage) {
+            setSuccessMessage('');
+        } 
         console.log(transaction)
         const requestOptions = {
             method: 'POST',
@@ -44,11 +48,34 @@ export default function AddExpense() {
             const response = await fetch("http://localhost:4000/be-et/transactions/add-expense", requestOptions);
             const data = await response.json();
             console.log(data);
+            if(data.success === true) {
+                console.log("success here")
+                setSuccessMessage(true)
+                getTransactions();
+                setTransaction({
+                    name: '',
+                    category: 'Grocery',
+                    dateOfTransaction: '',
+                    description: '',
+                    transactor_id: currentUser.id
+                })
+            } else {
+                setSuccessMessage(false)
+            }
         } catch (error) {
             console.log(error);
         }
     }
 
+    function checkSuccessMessage(successMessage) {
+        if(successMessage === true) {
+            return <SuccessBanner />
+        } else if(successMessage === false) {
+            return <InvalidBanner />
+        } else {
+            return null;
+        }
+    }
    
     useEffect(()=> {
         checkCurrentUser();
@@ -58,7 +85,7 @@ export default function AddExpense() {
         // <h1>hello</h1>
         <>
             {console.log('in add expense', currentUser.id)} 
-
+            {checkSuccessMessage(successMessage)}
             <div id="add-expense-wrapper" className="add-expense-wrapper">
                 <div className="close-button" onClick={removeModalDisplay}>
                     <img src="/../src/assets/images/close-button.png" alt=""/>

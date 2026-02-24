@@ -4,13 +4,14 @@ import { CurrentUserContext } from '../CurrentUserContext';
 import './LandingPage.css'
 import LoginAndRegister from '../LoginAndRegister/LoginAndRegister';
 import logo from '/src/assets/images/expense-tracker-logo.png';
-import lpImage from './../src/assets/images/lp-image-expense.png';
+import lpImage from '/src/assets/images/lp-image-expense.png';
 
 export default function LandingPage(){
 
     const { currentUser } = useContext(CurrentUserContext);
 
     return (
+        <>
         <main className="lp-wrapper-outer">
             <div className="lp-wrapper">
                 {console.log('in landing page', currentUser)}
@@ -30,5 +31,6 @@ export default function LandingPage(){
                 { currentUser.name && (<Navigate to="/dashboard/overview" replace /> )}
             </div>
         </main>
+      </>
     );
 }

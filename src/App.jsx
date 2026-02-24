@@ -5,10 +5,6 @@ import Profile from "./components/Profile/Profile";
 // import "./assets/styles/main.css";
 import DashboardTemplate from "./components/DashboardTemplate/DashboardTemplate";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
-import LoginRedirect from "./components/LoginRedirect";
-import { Navigate } from "react-router-dom";
-import LoginAndRegister from "./components/LoginAndRegister/LoginAndRegister";
 
 function App() {
 
