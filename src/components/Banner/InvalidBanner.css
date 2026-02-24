@@ -1,19 +1,20 @@
 .invalid-banner-wrapper {
-    width: 100vw;
-    height: 100%;
-    /* position: relative; */
-    z-index: 1;
+     /* width: 100vw;
+    height: 100%; */
+    position: absolute;
+    top: 20px;
+    left: 0;
+    height: 40px;
+    max-width: 280px;
+    width: 80vw;
+    z-index: 99;
     transition: all 1s linear;
     opacity: 0;
 }
 
 #invalid-banner {
-    position: absolute;
-    bottom: 20px;
-    left: 70px;
-    height: 40px;
-    max-width: 280px;
-    width: 80vw;
+    width: 100%;
+    height: 100%;
     background-color: rgb(214, 43, 54);
     border-width: 0px;
     color: #FFFFFF;

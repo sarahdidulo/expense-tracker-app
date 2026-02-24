@@ -1,23 +1,30 @@
 /* got styles from dashboardtemplate for the button */
 
-
-.add-expense-wrapper {
+#add-expense-outer {
     display: none;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    position: relative;
 }
 
-.add-expense-wrapper.display {
+#add-expense-outer.display {
+    display: block !important;
+}
+
+#add-expense-outer.display #add-expense-wrapper {
     display: block;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -84%);
+    transform: translate(-50%, 10%);
     width: 40vw;
     height: auto;
     padding: 20px;
     background-color: lightgray;
     z-index: 1;
     border-radius: 10px;    
-     box-shadow: 2px 2px 7px #cac8c8;
+    box-shadow: 2px 2px 7px #cac8c8;
 }
 
 .add-expense-wrapper .close-button {

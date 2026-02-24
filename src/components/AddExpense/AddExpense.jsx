@@ -5,9 +5,11 @@ import "./AddExpense.css";
 import { CurrentUserContext } from "../CurrentUserContext";
 import SuccessBanner from '../Banner/SuccessBanner';
 import InvalidBanner from '../Banner/InvalidBanner';
+import { BannerContext } from "../Banner/BannerContext";
 
 export default function AddExpense() {
     const { currentUser, reLogUserDetails, getTransactions } = useContext(CurrentUserContext);
+    const { successMessage, showSuccessMessage, clearSuccessMessage} = useContext(BannerContext);
     const id = useId();
     const [transaction, setTransaction] = useState({
         name: '',
@@ -16,7 +18,6 @@ export default function AddExpense() {
         description: '',
         transactor_id: currentUser.id
     });
-    const [ successMessage, setSuccessMessage ] = useState('');
 
     function checkCurrentUser () {
         if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
@@ -28,13 +29,13 @@ export default function AddExpense() {
     }
 
     function removeModalDisplay () {
-        var modal = document.getElementById("add-expense-wrapper");
+        var modal = document.getElementById("add-expense-outer");
         modal.classList.remove("display");
     }
     async function addExpenseTransaction (e) {
         e.preventDefault();
         if(successMessage) {
-            setSuccessMessage('');
+            clearSuccessMessage();
         } 
         console.log(transaction)
         const requestOptions = {
@@ -50,7 +51,7 @@ export default function AddExpense() {
             console.log(data);
             if(data.success === true) {
                 console.log("success here")
-                setSuccessMessage(true)
+                showSuccessMessage(true);
                 getTransactions();
                 setTransaction({
                     name: '',
@@ -60,33 +61,34 @@ export default function AddExpense() {
                     transactor_id: currentUser.id
                 })
             } else {
-                setSuccessMessage(false)
+                showSuccessMessage(false);
             }
         } catch (error) {
             console.log(error);
         }
     }
 
-    function checkSuccessMessage(successMessage) {
-        if(successMessage === true) {
-            return <SuccessBanner />
-        } else if(successMessage === false) {
-            return <InvalidBanner />
-        } else {
-            return null;
-        }
-    }
+    // function checkSuccessMessage(successMessage) {
+    //     if(successMessage === true) {
+    //         return <SuccessBanner />
+    //     } else if(successMessage === false) {
+    //         return <InvalidBanner />
+    //     } else {
+    //         return null;
+    //     }
+    // }
    
     useEffect(()=> {
         checkCurrentUser();
+        getTransactions();
     }, [])
 
     return (
         // <h1>hello</h1>
         <>
             {console.log('in add expense', currentUser.id)} 
-            {checkSuccessMessage(successMessage)}
-            <div id="add-expense-wrapper" className="add-expense-wrapper">
+            <div id="add-expense-outer">
+                <div id="add-expense-wrapper" className="add-expense-wrapper">
                 <div className="close-button" onClick={removeModalDisplay}>
                     <img src="/../src/assets/images/close-button.png" alt=""/>
                 </div>
@@ -128,6 +130,7 @@ export default function AddExpense() {
                     <button type="submit" className="add-expense-submit-button" name="Add Expense">Add Expense</button>
                     <br/>
                 </form> 
+            </div>
             </div>
         </>
         

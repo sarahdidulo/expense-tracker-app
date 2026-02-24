@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../CurrentUserContext';
 import './LoginAndRegister.css';
 import SuccessBanner from '../Banner/SuccessBanner';
 import InvalidBanner from '../Banner/InvalidBanner';
+import { BannerContext } from "../Banner/BannerContext";
 
 export default function LoginAndRegister() {
     
@@ -15,7 +16,8 @@ export default function LoginAndRegister() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [validatePassword, setValidatePassword] = useState(null);
     const { currentUser, logUserDetails } = useContext(CurrentUserContext);
-    const [ successMessage, setSuccessMessage ] = useState('');
+    const { successMessage, showSuccessMessage, clearSuccessMessage} = useContext(BannerContext);
+    
 
     const navigate = useNavigate();
 
@@ -100,16 +102,15 @@ export default function LoginAndRegister() {
                 })
             } 
             try {
+                if(successMessage) {
+                    clearSuccessMessage();
+                } 
                 const response = await fetch("http://localhost:4000/be-et/auth/register", requestOptions);
                 const data = await response.json();
                 setValidatePassword(null);
-                console.log(data);
-                if(data.success === "Success") {
-                    setSuccessMessage(<SuccessBanner />)
-                } else {
-                    setSuccessMessage(<InvalidBanner />)
-                }
+                showSuccessMessage(true);
             } catch (err) {
+                showSuccessMessage(false);
                 console.log(err);
             }
         }
@@ -167,7 +168,8 @@ export default function LoginAndRegister() {
     // })
     return (
         <>  
-         {successMessage}
+            <SuccessBanner />
+            <InvalidBanner />
             <div className="log-reg-form-wrapper">
             {currentForm === 'login form' ? loginForm() : signUpForm() }
             </div>

@@ -13,11 +13,15 @@ import overviewIconBlue from '/src/assets/images/pie-chart-blue.png';
 import overviewIconWhite from '/src/assets/images/pie-chart-white.png';
 import logo from '/src/assets/images/expense-tracker-logo.png';
 import plusIcon from '/src/assets/images/plus-icon.png';
+import SuccessBanner from "../Banner/SuccessBanner";
+import InvalidBanner from "../Banner/InvalidBanner";
+import { BannerContext } from "../Banner/BannerContext";
 
 export default function DashboardTemplate({children}) {
     const { currentUser, clearLoggedUser, reLogUserDetails } = useContext(CurrentUserContext);
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('overview');
+    const { successMessage, showSuccessMessage, clearSuccessMessage} = useContext(BannerContext);
     
     function checkCurrentUser () {
         if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
@@ -36,7 +40,7 @@ export default function DashboardTemplate({children}) {
     }
 
      function addExpenseModal () {
-        var modal = document.getElementById("add-expense-wrapper");
+        var modal = document.getElementById("add-expense-outer");
         modal.classList.toggle("display");
     }
 
@@ -69,14 +73,25 @@ export default function DashboardTemplate({children}) {
         });
     }, [window.location.pathname])
     
+    // const checkSuccessMessage = () => {
+    //     if(successMessage === true) {
+    //         clearSuccessMessage();
+    //         return <SuccessBanner />
+    //     } else if(successMessage === false) {
+    //         clearSuccessMessage();
+    //         return <InvalidBanner />
+    //     }
+    // }
 
     return (
         <>
         { currentUser.token ?
         <>
         <main className="db-wrapper">
+            <AddExpense />
+            <SuccessBanner />
+            <InvalidBanner />
             <div className="db-wrapper-inner">
-                <AddExpense />
                 <div className="db-nav-wrapper">
                     <div className="db-nav-wrapper-inner">
                         <a className="db-nav-db-link" href="/" >

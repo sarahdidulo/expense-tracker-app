@@ -4,12 +4,12 @@ import { useEffect } from 'react';
 
 export default function InvalidBanner() {
 
-    useEffect(() => {
-        document.getElementById("invalid-banner-wrapper").classList.add("opacity-set");
-        setTimeout(() => {
-        document.getElementById("invalid-banner-wrapper").classList.remove("opacity-set");          
-        }, 2000);
-    }, [])
+    // useEffect(() => {
+    //     document.getElementById("invalid-banner-wrapper").classList.add("opacity-set");
+    //     setTimeout(() => {
+    //     document.getElementById("invalid-banner-wrapper").classList.remove("opacity-set");          
+    //     }, 2000);
+    // }, [])
 
     return (
         <>

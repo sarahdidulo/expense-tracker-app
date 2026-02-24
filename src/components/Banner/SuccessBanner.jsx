@@ -4,12 +4,12 @@ import { useEffect } from 'react';
 
 export default function SuccessBanner() {
 
-    useEffect(() => {
-        document.getElementById("success-banner-wrapper").classList.add("opacity-set");
-        setTimeout(() => {
-        document.getElementById("success-banner-wrapper").classList.remove("opacity-set");          
-        }, 2000);
-    }, [])
+    // useEffect(() => {
+    //     document.getElementById("success-banner-wrapper").classList.add("opacity-set");
+    //     setTimeout(() => {
+    //     document.getElementById("success-banner-wrapper").classList.remove("opacity-set");          
+    //     }, 2000);
+    // }, [])
 
     return (
         <>
