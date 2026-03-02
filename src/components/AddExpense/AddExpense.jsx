@@ -8,7 +8,7 @@ import InvalidBanner from '../Banner/InvalidBanner';
 import { BannerContext } from "../Banner/BannerContext";
 
 export default function AddExpense() {
-    const { currentUser, reLogUserDetails, getTransactions } = useContext(CurrentUserContext);
+    const { currentUser, reLogUserDetails, getTransactions, newTransaction, logNewTransaction, clearNewTransaction } = useContext(CurrentUserContext);
     const { successMessage, showSuccessMessage, clearSuccessMessage} = useContext(BannerContext);
     const id = useId();
     const [transaction, setTransaction] = useState({
@@ -37,7 +37,6 @@ export default function AddExpense() {
         if(successMessage) {
             clearSuccessMessage();
         } 
-        console.log(transaction)
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -48,7 +47,6 @@ export default function AddExpense() {
         try {
             const response = await fetch("http://localhost:4000/be-et/transactions/add-expense", requestOptions);
             const data = await response.json();
-            console.log(data);
             if(data.success === true) {
                 showSuccessMessage(true);
                 setTransaction({
@@ -59,6 +57,7 @@ export default function AddExpense() {
                     transactor_id: currentUser.id
                 })
                 getTransactions();
+                logNewTransaction();
             } else {
                 showSuccessMessage(false);
             }
@@ -66,16 +65,6 @@ export default function AddExpense() {
             console.log(error);
         }
     }
-
-    // function checkSuccessMessage(successMessage) {
-    //     if(successMessage === true) {
-    //         return <SuccessBanner />
-    //     } else if(successMessage === false) {
-    //         return <InvalidBanner />
-    //     } else {
-    //         return null;
-    //     }
-    // }
    
     useEffect(()=> {
         checkCurrentUser();
@@ -102,7 +91,7 @@ export default function AddExpense() {
 
                     <label htmlFor={id + "-category"}>Category: </label>
                     <select name={transaction.category} id={id + "-category"} onChange={e => setTransaction({...transaction, category: e.target.value})}>
-                        <option value="Grocery">Grocery</option>
+                        <option value="Groceries">Groceries</option>
                         <option value="Loan Payment">Loan Payment</option>
                         <option value="Utilities">Utilities</option>
                         <option value="Maintenance">Maintenance</option>

@@ -6,6 +6,7 @@ export const CurrentUserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState("");
     const [transactions, setTransactions] = useState([]);
     const [ filteredTransactions, setFilteredTransactions] = useState([]);
+    const [ newTransaction, setNewTransaction ] = useState('');
 
     const logUserDetails = (id, name, token) => {
         setCurrentUser({
@@ -42,11 +43,10 @@ export const CurrentUserProvider = ({children}) => {
         }
     }
 
-    async function filterTransactions(month, year) {
-        // console.log('in filter', month);    
-        // console.log('in filter', year);
+    async function filterTransactions(category) {
         try {
-            const response = await fetch(`http://localhost:4000/be-et/transactions/all/${currentUser.id}/${month}/${year}`);
+            clearFilteredTransactions();
+            const response = await fetch(`http://localhost:4000/be-et/transactions/all/${currentUser.id}/${category}`);
             const data = await response.json();
             console.log('returned data', data)
             setFilteredTransactions(data);
@@ -60,9 +60,17 @@ export const CurrentUserProvider = ({children}) => {
         setFilteredTransactions('');
     }
 
+    function logNewTransaction() {
+        setNewTransaction(true);
+    }
+
+    function clearNewTransaction(){
+        setNewTransaction('');
+    }
+
     return (
         <>
-            <CurrentUserContext.Provider value={{currentUser, logUserDetails, clearLoggedUser, reLogUserDetails, getTransactions, transactions, filterTransactions, filteredTransactions, clearFilteredTransactions}}>
+            <CurrentUserContext.Provider value={{currentUser, logUserDetails, clearLoggedUser, reLogUserDetails, getTransactions, transactions, filterTransactions, filteredTransactions, clearFilteredTransactions, newTransaction, logNewTransaction, clearNewTransaction}}>
                 {children}
             </CurrentUserContext.Provider>
         </>

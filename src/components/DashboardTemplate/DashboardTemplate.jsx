@@ -57,17 +57,13 @@ export default function DashboardTemplate({children}) {
     // }
 
     useEffect(()=>{
-        console.log("use effect")
         setActiveTab(()=>{
             let path = window.location.pathname;
             if(path.includes('overview')) {
-                console.log('overview tab')
                 return 'overview';
             } else if(path.includes('transactions')) {
-                console.log('transactions tab')
                 return 'transactions';
             } else if(path.includes('profile')) {
-                console.log('profile tab')
                 return 'profile';
             }
         });
