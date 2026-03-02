@@ -1,5 +1,6 @@
 .transaction-list-heading {
     font-size: 30px;
+    margin-bottom: 21px;
 }
 
 .transaction-list {
@@ -21,4 +22,33 @@
 }
 .transaction-list-item-text:first-child{
     margin-top: 0; 
+}
+
+.transaction-filter-text {
+    margin-bottom: 10px;
+    display: block;
+    font-size: 15px;
+}
+.transaction-list-container select{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: auto;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+#transaction-year-filter {
+    margin-left: 5px;
+}
+
+.transaction-filter-button {
+    width: auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(99, 198, 231);
+    color: #FFFFFF;
+    border: 1px solid rgb(99, 198, 231);
+    cursor: pointer;
+    transition: background-color 0.5s;
+    margin-left: 5px;
 }

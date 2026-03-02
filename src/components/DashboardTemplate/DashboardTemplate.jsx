@@ -65,7 +65,7 @@ export default function DashboardTemplate({children}) {
                 return 'overview';
             } else if(path.includes('transactions')) {
                 console.log('transactions tab')
-                return transactions;
+                return 'transactions';
             } else if(path.includes('profile')) {
                 console.log('profile tab')
                 return 'profile';

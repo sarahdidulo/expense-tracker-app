@@ -13,7 +13,6 @@ export default function SuccessBanner() {
 
     return (
         <>
-            {console.log("success banner show")}
             <div id="success-banner-wrapper" className="success-banner-wrapper">
                 <div id="success-banner">
                     <img src={checkMark} alt=""/> <p>Success!</p>

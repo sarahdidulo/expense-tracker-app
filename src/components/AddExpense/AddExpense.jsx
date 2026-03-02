@@ -50,9 +50,7 @@ export default function AddExpense() {
             const data = await response.json();
             console.log(data);
             if(data.success === true) {
-                console.log("success here")
                 showSuccessMessage(true);
-                getTransactions();
                 setTransaction({
                     name: '',
                     category: 'Grocery',
@@ -60,6 +58,7 @@ export default function AddExpense() {
                     description: '',
                     transactor_id: currentUser.id
                 })
+                getTransactions();
             } else {
                 showSuccessMessage(false);
             }
@@ -84,9 +83,7 @@ export default function AddExpense() {
     }, [])
 
     return (
-        // <h1>hello</h1>
         <>
-            {console.log('in add expense', currentUser.id)} 
             <div id="add-expense-outer">
                 <div id="add-expense-wrapper" className="add-expense-wrapper">
                 <div className="close-button" onClick={removeModalDisplay}>
@@ -113,7 +110,10 @@ export default function AddExpense() {
                     <br/>
 
                     <label htmlFor={id + "-dateOfTransaction"}>Date of Transaction: </label>
-                    <DatePicker selected={transaction.dateOfTransaction} onChange={(date) => setTransaction({...transaction, dateOfTransaction: date})} dateFormat="MM/dd/yyyy" />
+                    <DatePicker selected={transaction.dateOfTransaction} onChange={(date) => setTransaction({...transaction, dateOfTransaction: 
+                        new Date(date)
+                        // convertTransactionDate(date);
+                        })} />
                     <br />
                     <label htmlFor={id + "-description"}>Description: </label>
                     <textarea 
@@ -123,10 +123,6 @@ export default function AddExpense() {
                     placeholder="Enter a description"
                     onChange={e => setTransaction({...transaction, description: e.target.value})}/>
                     <br/>
-                    {/* <Uploady
-                        destination={{ url: "http://localhost:4000/be-et/transactions/add-expense" }}>
-                        <UploadButton/>
-                    </Uploady> */}
                     <button type="submit" className="add-expense-submit-button" name="Add Expense">Add Expense</button>
                     <br/>
                 </form> 
