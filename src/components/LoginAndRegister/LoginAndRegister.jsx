@@ -25,7 +25,6 @@ export default function LoginAndRegister() {
 
     async function login(e) {
         e.preventDefault();
-        console.log(`entered login function. email: ` + email + ` | password` + password)
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -41,6 +40,7 @@ export default function LoginAndRegister() {
         try {
             const response = await fetch(`${prod_url}/be-et/auth/login`, requestOptions);
             const data = await response.json();
+            console.log(data);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("user_id", data.user._id);
             sessionStorage.setItem("username", data.user.username);
