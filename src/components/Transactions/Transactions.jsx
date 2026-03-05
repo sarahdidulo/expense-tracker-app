@@ -7,8 +7,6 @@ export default function Transactions() {
     const [ categoryFilter, setCategoryFilter ] = useState('');
     const { currentUser, getTransactions, transactions, filterTransactions, filteredTransactions, clearFilteredTransactions, newTransaction, clearNewTransaction } = useContext(CurrentUserContext);
     const [ displayedTransactions, setDisplayedTransactions ] = useState([...transactions]);
-    const [ renderTransactions, setRenderTransactions ] = useState('');
-
 
     function convertTransactionDate (transaction_date) {
         const converted_transaction_date = new Date(transaction_date);
@@ -23,7 +21,7 @@ export default function Transactions() {
         return `${month}` + `-${day}` + `-${converted_transaction_date.getFullYear()}` ;
     }
 
-     useEffect(() => {
+    useEffect(() => {
         if (newTransaction == true) {
             async function newTransactionDetected () {
                 await getTransactions();
@@ -31,8 +29,11 @@ export default function Transactions() {
                 await clearNewTransaction();
             }
             newTransactionDetected();
-        } else if (filteredTransactions != '' && newTransaction != true) {
-            setDisplayedTransactions(filteredTransactions); 
+        } else if (filteredTransactions != '' && categoryFilter != '' && newTransaction != true) {
+            setDisplayedTransactions(filteredTransactions);
+        } else if (filteredTransactions != '' && categoryFilter == '' && newTransaction != true) {
+            clearFilteredTransactions();
+            setDisplayedTransactions(transactions);
         } else {
             setDisplayedTransactions(transactions);
         }
@@ -62,6 +63,8 @@ export default function Transactions() {
                         <p className="transaction-category">{transaction.category}</p>
                         <p className="transaction-list-item-text">Date of Transaction: </p>
                         <p className="transaction-date-of-transaction">{convertTransactionDate(transaction.dateOfTransaction)}</p>
+                        <p className="transaction-list-item-text">Amount: </p>
+                        <p className="transaction-amount">Php {transaction.amount.toFixed(2)}</p>
                         <p className="transaction-list-item-text">Description: </p>
                         <p className="transaction-description">{transaction.description}</p>
                     </li> ) 

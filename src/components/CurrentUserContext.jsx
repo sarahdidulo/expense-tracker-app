@@ -8,27 +8,31 @@ export const CurrentUserProvider = ({children}) => {
     const [ filteredTransactions, setFilteredTransactions] = useState([]);
     const [ newTransaction, setNewTransaction ] = useState('');
 
-    const logUserDetails = (id, name, token) => {
+    async function logUserDetails (id, username, email, token) {
         setCurrentUser({
             id: id,
-            name: name,
-            token: token
+            username: username,
+            email: email,
+            token: token,
         });
     }
 
     const clearLoggedUser = () => {
         setCurrentUser({
             id: '',
-            name: '',
-            token: ''
+            email: '',
+            username: '',
+            token: '',
         })
     }
 
-    const reLogUserDetails = (id, name, token) => {
+    async function reLogUserDetails (id) {
+        const response = await fetch(`http://localhost:4000/be-et/user/user-details/${id}`);
+        const data = await response.json();
         setCurrentUser({
-            id: id,
-            name: name,
-            token: token
+            ...currentUser,
+            username: data.username,
+            email: data.email,
         })
     }
     

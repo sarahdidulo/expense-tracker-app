@@ -1,0 +1,34 @@
+
+.profile-wrapper h1 {
+    margin-bottom: 21px;
+}
+
+.profile-details-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details-form label {
+    font-size: 15px;
+    padding-bottom: 10px;
+    display: block;
+}
+.profile-details-form input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 35px;
+    width: 50%;
+    padding: 10px;
+    margin-top: 3px;
+}
+
+.profile-details-form button {
+    width: auto;
+    /* border: 1px solid lightgray; */
+    height: 35px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(99, 198, 231);
+    color: #FFFFFF;
+    border: 1px solid rgb(99, 198, 231);
+}

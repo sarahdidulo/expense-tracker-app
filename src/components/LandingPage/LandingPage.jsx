@@ -15,7 +15,7 @@ export default function LandingPage(){
         <main className="lp-wrapper-outer">
             <div className="lp-wrapper">
                 {console.log('in landing page', currentUser)}
-                {!currentUser.name && (
+                {!currentUser.id && (
                 <>
                 <div className="lp-heading-wrapper">
                         <img className="lp-heading-logo" src={logo} alt="Expense Tracker Logo" />
@@ -28,7 +28,7 @@ export default function LandingPage(){
                     </div>
                 </>
                     )}
-                { currentUser.name && (<Navigate to="/dashboard/overview" replace /> )}
+                { currentUser.user_id && (<Navigate to="/dashboard/overview" replace /> )}
             </div>
         </main>
       </>

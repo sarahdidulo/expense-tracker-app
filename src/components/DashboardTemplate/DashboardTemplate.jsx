@@ -24,12 +24,9 @@ export default function DashboardTemplate({children}) {
     const { successMessage, showSuccessMessage, clearSuccessMessage} = useContext(BannerContext);
     
     function checkCurrentUser () {
-        if(currentUser.id !== ''&& sessionStorage.getItem('user_id')){
-            reLogUserDetails(sessionStorage.getItem('user_id'), sessionStorage.getItem('name'), sessionStorage.getItem('token'));
-            return true;
-        } else {
-            return false;
-        }    
+        if(currentUser.id !== '' && sessionStorage.getItem('user_id')){
+            reLogUserDetails(sessionStorage.getItem('user_id'));    
+        }
     }
 
     function logout () {   
@@ -57,6 +54,7 @@ export default function DashboardTemplate({children}) {
     // }
 
     useEffect(()=>{
+        checkCurrentUser();
         setActiveTab(()=>{
             let path = window.location.pathname;
             if(path.includes('overview')) {
@@ -67,7 +65,7 @@ export default function DashboardTemplate({children}) {
                 return 'profile';
             }
         });
-    }, [window.location.pathname])
+    }, [window.location.pathname, ])
     
     // const checkSuccessMessage = () => {
     //     if(successMessage === true) {
@@ -80,6 +78,7 @@ export default function DashboardTemplate({children}) {
     // }
 
     return (
+      
         <>
         { currentUser.token ?
         <>
@@ -96,19 +95,19 @@ export default function DashboardTemplate({children}) {
                     </a>                   
                     <a className="db-nav-profile-img-wrapper" href="/profile" >
                         {/* <img className="db-nav-profile-img" src={userDetails.image} alt="Profile Picture"/> */}
-                        <p className="db-nav-profile-greeting">Hi {currentUser.name}!</p>
+                        <p className="db-nav-profile-greeting">Hi {currentUser.username}!</p>
                     </a>
                     <nav className="db-sidenav-wrapper">
                         <NavLink to="/dashboard/overview" id="overview" className="db-nav-link">
-                            <img src={activeTab === 'overview' ? overviewIconWhite : overviewIconBlue} alt />
+                            <img src={activeTab === 'overview' ? overviewIconWhite : overviewIconBlue} alt="" />
                             Overview
                         </NavLink>
                         <NavLink to="/dashboard/transactions" id="transactions" className="db-nav-link">
-                            <img src={activeTab === 'transactions' ? transactionsIconWhite : transactionsIconBlue} alt />
+                            <img src={activeTab === 'transactions' ? transactionsIconWhite : transactionsIconBlue} alt="" />
                             Transactions
                         </NavLink>
                         <NavLink to="/dashboard/profile" id="profile" className="db-nav-link">
-                            <img src={activeTab === 'profile' ? profileIconWhite: profileIconBlue} alt />
+                            <img src={activeTab === 'profile' ? profileIconWhite: profileIconBlue} alt="" />
                             Profile
                         </NavLink>
                     </nav>

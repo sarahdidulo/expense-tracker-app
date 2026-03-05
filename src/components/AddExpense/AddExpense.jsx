@@ -13,9 +13,10 @@ export default function AddExpense() {
     const id = useId();
     const [transaction, setTransaction] = useState({
         name: '',
-        category: 'Grocery',
+        category: 'Groceries',
         dateOfTransaction: '',
         description: '',
+        amount: '',
         transactor_id: currentUser.id
     });
 
@@ -51,9 +52,10 @@ export default function AddExpense() {
                 showSuccessMessage(true);
                 setTransaction({
                     name: '',
-                    category: 'Grocery',
+                    category: 'Groceries',
                     dateOfTransaction: '',
                     description: '',
+                    amount: '',
                     transactor_id: currentUser.id
                 })
                 getTransactions();
@@ -104,6 +106,14 @@ export default function AddExpense() {
                         // convertTransactionDate(date);
                         })} />
                     <br />
+                    <label htmlFor={id + "-amount"}>Amount (in Peso): </label>
+                    <input type="text" 
+                    id={id + "-amount"}
+                    name="transaction[amount]" 
+                    value={transaction.amount}
+                    placeholder="Enter amount"
+                    onChange={e => setTransaction({...transaction, amount: e.target.value})}/>
+                    <br/>
                     <label htmlFor={id + "-description"}>Description: </label>
                     <textarea 
                     id={id + "-description"}

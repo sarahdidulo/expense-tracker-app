@@ -10,7 +10,7 @@ export default function LoginAndRegister() {
     
     //state current form is login or sign up form
     const [currentForm, setCurrentForm] = useState('login form');
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -42,8 +42,8 @@ export default function LoginAndRegister() {
             const data = await response.json();
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("user_id", data.user._id);
-            sessionStorage.setItem("name", data.user.name);
-            logUserDetails(data.user._id, data.user.name, data.token);
+            sessionStorage.setItem("username", data.user.username);
+            logUserDetails(data.user._id, data.user.username, data.user.email, data.token);
             navigate('/dashboard/overview');
         } catch (err) {
             console.log(err);
@@ -84,7 +84,6 @@ export default function LoginAndRegister() {
 
     async function signup (e) {
         e.preventDefault();
-        console.log(`entered sign up function. email: ` + email + ` | password` + password)
         if(confirmPassword !== password) {
             setValidatePassword(false);
         } else if(confirmPassword === password) {
@@ -96,7 +95,7 @@ export default function LoginAndRegister() {
                 withCredentials: true, 
                 credentials: "include",
                 body: JSON.stringify({
-                    name: name,
+                    username: username,
                     email: email,
                     password: password
                 })
@@ -122,12 +121,12 @@ export default function LoginAndRegister() {
                 <h2>Create an Account</h2>
                 <form className="sign-up-form" onSubmit={signup}>
                     <label>
-                        Name:
+                        Username:
                         <br />
                         <input type="text" 
-                        value={name} 
-                        onChange={(e)=>setName(e.target.value)} 
-                        placeholder="Enter your name" />
+                        value={username} 
+                        onChange={(e)=>setUsername(e.target.value)} 
+                        placeholder="Enter a username" />
                     </label>
                     <label>
                         Email:
