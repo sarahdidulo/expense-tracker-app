@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({children}) => {
+    const prod_url = import.meta.env.VITE_PROD_URL;
     const [currentUser, setCurrentUser] = useState("");
     const [transactions, setTransactions] = useState([]);
     const [ filteredTransactions, setFilteredTransactions] = useState([]);
@@ -27,7 +28,7 @@ export const CurrentUserProvider = ({children}) => {
     }
 
     async function reLogUserDetails (id) {
-        const response = await fetch(`${process.env.PROD_URL}/be-et/user/user-details/${id}`);
+        const response = await fetch(`${prod_url}/be-et/user/user-details/${id}`);
         const data = await response.json();
         setCurrentUser({
             ...currentUser,
@@ -38,7 +39,7 @@ export const CurrentUserProvider = ({children}) => {
     
     async function getTransactions () {
         try {
-            const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/all/${currentUser.id}`);
+            const response = await fetch(`${prod_url}/be-et/transactions/all/${currentUser.id}`);
             const data = await response.json();
             setTransactions(data);
             return transactions;
@@ -50,7 +51,7 @@ export const CurrentUserProvider = ({children}) => {
     async function filterTransactions(category) {
         try {
             clearFilteredTransactions();
-            const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/all/${currentUser.id}/${category}`);
+            const response = await fetch(`${prod_url}/be-et/transactions/all/${currentUser.id}/${category}`);
             const data = await response.json();
             console.log('returned data', data)
             setFilteredTransactions(data);

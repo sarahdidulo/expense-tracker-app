@@ -6,6 +6,7 @@ import { CurrentUserContext } from '../CurrentUserContext';
 import { BannerContext } from "../Banner/BannerContext";
 
 export default function Profile() {
+    const prod_url = import.meta.env.VITE_PROD_URL;
     const { currentUser, reLogUserDetails } = useContext(CurrentUserContext);
     const [ firstname, setFirstname ] = useState('');
     const [ middlename, setMiddlename ] = useState('');
@@ -14,7 +15,7 @@ export default function Profile() {
 
     async function addDetails (id) {
         try {
-            const response = await fetch(`${process.env.PROD_URL}/be-et/user/user-details/${id}`);
+            const response = await fetch(`${prod_url}/be-et/user/user-details/${id}`);
             const data = await response.json();
             if(data.firstname) {
                 setFirstname(data.firstname);
@@ -42,7 +43,7 @@ export default function Profile() {
             })
         }
         try {
-            const response = await fetch(`${process.env.PROD_URL}/be-et/user/add-profile-details/`, requestOptions);
+            const response = await fetch(`${prod_url}/be-et/user/add-profile-details/`, requestOptions);
             const data = await response.json();
             if(data.success == true) {
                 showSuccessMessage(true)

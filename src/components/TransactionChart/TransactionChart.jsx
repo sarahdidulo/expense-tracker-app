@@ -12,6 +12,7 @@ import {
 ModuleRegistry.registerModules([LegendModule, PieSeriesModule]);
 
 export default function TransactionChart() {
+    const prod_url = import.meta.env.VITE_PROD_URL;
     const { currentUser, transactions } = useContext(CurrentUserContext);
     const [options, setOptions] = useState({
     data: [],
@@ -29,7 +30,7 @@ export default function TransactionChart() {
 
   async function getData () {
     try {
-        const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/all/${currentUser.id}`);
+        const response = await fetch(`${prod_url}/be-et/transactions/all/${currentUser.id}`);
         const data = await response.json();
         console.log(data);
         setOptions({...options, data: data})

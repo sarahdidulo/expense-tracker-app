@@ -9,6 +9,7 @@ import { BannerContext } from "../Banner/BannerContext";
 export default function LoginAndRegister() {
     
     //state current form is login or sign up form
+    const prod_url = import.meta.env.VITE_PROD_URL;
     const [currentForm, setCurrentForm] = useState('login form');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -38,7 +39,7 @@ export default function LoginAndRegister() {
             })
         } 
         try {
-            const response = await fetch(`${process.env.PROD_URL}/be-et/auth/login`, requestOptions);
+            const response = await fetch(`${prod_url}/be-et/auth/login`, requestOptions);
             const data = await response.json();
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("user_id", data.user._id);
@@ -104,7 +105,7 @@ export default function LoginAndRegister() {
                 if(successMessage) {
                     clearSuccessMessage();
                 } 
-                const response = await fetch(`${process.env.PROD_URL}/be-et/auth/register`, requestOptions);
+                const response = await fetch(`${prod_url}/be-et/auth/register`, requestOptions);
                 const data = await response.json();
                 setValidatePassword(null);
                 showSuccessMessage(true);

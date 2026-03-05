@@ -8,6 +8,7 @@ import InvalidBanner from '../Banner/InvalidBanner';
 import { BannerContext } from "../Banner/BannerContext";
 
 export default function AddExpense() {
+    const prod_url = import.meta.env.VITE_PROD_URL;
     const { currentUser, reLogUserDetails, getTransactions, newTransaction, logNewTransaction, clearNewTransaction } = useContext(CurrentUserContext);
     const { successMessage, showSuccessMessage, clearSuccessMessage} = useContext(BannerContext);
     const id = useId();
@@ -46,7 +47,7 @@ export default function AddExpense() {
             body: JSON.stringify(transaction)
         } 
         try {
-            const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/add-expense`, requestOptions);
+            const response = await fetch(`${prod_url}/be-et/transactions/add-expense`, requestOptions);
             const data = await response.json();
             if(data.success === true) {
                 showSuccessMessage(true);
