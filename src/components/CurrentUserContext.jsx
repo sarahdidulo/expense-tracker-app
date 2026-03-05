@@ -27,7 +27,7 @@ export const CurrentUserProvider = ({children}) => {
     }
 
     async function reLogUserDetails (id) {
-        const response = await fetch(`http://localhost:4000/be-et/user/user-details/${id}`);
+        const response = await fetch(`${process.env.PROD_URL}/be-et/user/user-details/${id}`);
         const data = await response.json();
         setCurrentUser({
             ...currentUser,
@@ -38,7 +38,7 @@ export const CurrentUserProvider = ({children}) => {
     
     async function getTransactions () {
         try {
-            const response = await fetch(`http://localhost:4000/be-et/transactions/all/${currentUser.id}`);
+            const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/all/${currentUser.id}`);
             const data = await response.json();
             setTransactions(data);
             return transactions;
@@ -50,7 +50,7 @@ export const CurrentUserProvider = ({children}) => {
     async function filterTransactions(category) {
         try {
             clearFilteredTransactions();
-            const response = await fetch(`http://localhost:4000/be-et/transactions/all/${currentUser.id}/${category}`);
+            const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/all/${currentUser.id}/${category}`);
             const data = await response.json();
             console.log('returned data', data)
             setFilteredTransactions(data);

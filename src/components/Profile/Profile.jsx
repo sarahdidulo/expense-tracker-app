@@ -14,7 +14,7 @@ export default function Profile() {
 
     async function addDetails (id) {
         try {
-            const response = await fetch(`http://localhost:4000/be-et/user/user-details/${id}`);
+            const response = await fetch(`${process.env.PROD_URL}/be-et/user/user-details/${id}`);
             const data = await response.json();
             if(data.firstname) {
                 setFirstname(data.firstname);
@@ -42,7 +42,7 @@ export default function Profile() {
             })
         }
         try {
-            const response = await fetch("http://localhost:4000/be-et/user/add-profile-details/", requestOptions);
+            const response = await fetch(`${process.env.PROD_URL}/be-et/user/add-profile-details/`, requestOptions);
             const data = await response.json();
             if(data.success == true) {
                 showSuccessMessage(true)

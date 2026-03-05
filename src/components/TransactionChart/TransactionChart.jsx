@@ -29,7 +29,7 @@ export default function TransactionChart() {
 
   async function getData () {
     try {
-        const response = await fetch(`http://localhost:4000/be-et/transactions/all/${currentUser.id}`);
+        const response = await fetch(`${process.env.PROD_URL}/be-et/transactions/all/${currentUser.id}`);
         const data = await response.json();
         console.log(data);
         setOptions({...options, data: data})

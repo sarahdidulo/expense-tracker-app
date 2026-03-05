@@ -38,7 +38,7 @@ export default function LoginAndRegister() {
             })
         } 
         try {
-            const response = await fetch("http://localhost:4000/be-et/auth/login", requestOptions);
+            const response = await fetch(`${process.env.PROD_URL}/be-et/auth/login`, requestOptions);
             const data = await response.json();
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("user_id", data.user._id);
@@ -104,7 +104,7 @@ export default function LoginAndRegister() {
                 if(successMessage) {
                     clearSuccessMessage();
                 } 
-                const response = await fetch("http://localhost:4000/be-et/auth/register", requestOptions);
+                const response = await fetch(`${process.env.PROD_URL}/be-et/auth/register`, requestOptions);
                 const data = await response.json();
                 setValidatePassword(null);
                 showSuccessMessage(true);
