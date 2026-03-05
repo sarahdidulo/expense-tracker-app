@@ -84,15 +84,33 @@ export default function DashboardTemplate({children}) {
         <>
         <main className="db-wrapper">
             <AddExpense />
-            <SuccessBanner />
-            <InvalidBanner />
             <div className="db-wrapper-inner">
+                <div className="db-nav-wrapper-mobile-top-nav">
+                     <a className="db-nav-db-link" href="/" >
+                        <img className="db-nav-db-link-logo" src={logo} alt="Expense Tracker Logo"/>
+                            <h1>Expense Tracker Dashboard</h1>
+                    </a>   
+                    <nav className="db-sidenav-wrapper">
+                        <NavLink to="/dashboard/overview" id="overview" className="db-nav-link">
+                            <img src={activeTab === 'overview' ? overviewIconWhite : overviewIconBlue} alt="" />
+                            Overview
+                        </NavLink>
+                        <NavLink to="/dashboard/transactions" id="transactions" className="db-nav-link">
+                            <img src={activeTab === 'transactions' ? transactionsIconWhite : transactionsIconBlue} alt="" />
+                            Transactions
+                        </NavLink>
+                        <NavLink to="/dashboard/profile" id="profile" className="db-nav-link">
+                            <img src={activeTab === 'profile' ? profileIconWhite: profileIconBlue} alt="" />
+                            Profile
+                        </NavLink>
+                    </nav>
+                </div>
                 <div className="db-nav-wrapper">
                     <div className="db-nav-wrapper-inner">
                         <a className="db-nav-db-link" href="/" >
                         <img className="db-nav-db-link-logo" src={logo} alt="Expense Tracker Logo"/>
-                        <h1>Expense Tracker Dashboard</h1>
-                    </a>                   
+                            <h1>Expense Tracker Dashboard</h1>
+                        </a>                   
                     <a className="db-nav-profile-img-wrapper" href="/profile" >
                         {/* <img className="db-nav-profile-img" src={userDetails.image} alt="Profile Picture"/> */}
                         <p className="db-nav-profile-greeting">Hi {currentUser.username}!</p>
@@ -123,7 +141,16 @@ export default function DashboardTemplate({children}) {
                 <div className="db-content">
                     {children}
                 </div>
+                <div className="db-nav-wrapper-mobile-bottom-nav">
+                    <button className="db-nav-add-transaction-button" onClick={addExpenseModal}>
+                        <img className="db-nav-plus-icon" src={plusIcon} alt="Plus icon" />
+                            Add a Transaction
+                        </button>
+                    <button className="db-logout-button" onClick={logout}>Log Out</button>
+                </div>
             </div>
+        <SuccessBanner />
+        <InvalidBanner />
         </main> 
         </>
           : <Navigate to="/" replace />

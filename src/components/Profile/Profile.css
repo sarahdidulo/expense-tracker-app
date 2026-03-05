@@ -32,3 +32,9 @@
     color: #FFFFFF;
     border: 1px solid rgb(99, 198, 231);
 }
+
+@media screen and (max-width: 768px) {
+    .profile-details-form input {
+        width: 70%;
+    }
+}

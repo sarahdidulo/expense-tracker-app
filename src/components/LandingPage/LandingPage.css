@@ -1,21 +1,20 @@
 .lp-wrapper-outer{
     width: 100%;
     display: flex;
-    padding: 25px 20px;
+    padding: 50px 20px;
     height: 100vh;
     align-items: center;
     justify-content: center;
 }
 .lp-wrapper {
     width: 90vw;
-    padding: 25px 20px;
     display: flex;
     justify-content: center;
     height: 100%;
 }
 
 .lp-heading-wrapper {
-    width: 38%;
+    width: 38vw;
     height: auto;
     max-width: 400px;
     display: flex;
@@ -55,4 +54,19 @@
 .lp-image {
     width: auto;
     height: 650px;
+}
+
+@media screen and (max-width: 768px) {
+    .lp-wrapper-outer {
+        padding: 40px 20px;
+    }
+    .lp-heading-wrapper {
+        width: 80vw;
+        background-color: #f3f3f3e1;
+    }
+    .lp-image-wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
 }
