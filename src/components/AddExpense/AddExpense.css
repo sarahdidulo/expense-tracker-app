@@ -100,6 +100,8 @@
 
 @media screen and (max-width: 768px) {
     #add-expense-outer.display #add-expense-wrapper {
-        width: 85vw;
+        width: 350px;
+        display: flex;
+        justify-self: center;
     }
 }
