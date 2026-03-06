@@ -99,9 +99,12 @@
 }
 
 @media screen and (max-width: 768px) {
+    #add-expense-outer.display {
+        display: flex !important;
+        justify-content: center;
+    }
     #add-expense-outer.display #add-expense-wrapper {
         width: 350px;
-        justify-self: center;
         transform: unset;
     }
 }
