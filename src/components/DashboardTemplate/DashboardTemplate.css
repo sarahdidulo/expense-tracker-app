@@ -221,6 +221,7 @@
         width: 100vw;
         flex-direction: column;
         padding: 10px;
+        z-index: 40;
     }
 
     .db-nav-add-transaction-button {
