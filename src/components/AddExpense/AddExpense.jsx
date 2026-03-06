@@ -6,6 +6,7 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import SuccessBanner from '../Banner/SuccessBanner';
 import InvalidBanner from '../Banner/InvalidBanner';
 import { BannerContext } from "../Banner/BannerContext";
+import closeButton from "/src/assets/images/close-button.png";
 
 export default function AddExpense() {
     const prod_url = import.meta.env.VITE_PROD_URL;
@@ -79,7 +80,7 @@ export default function AddExpense() {
             <div id="add-expense-outer">
                 <div id="add-expense-wrapper" className="add-expense-wrapper">
                 <div className="close-button" onClick={removeModalDisplay}>
-                    <img src="/../src/assets/images/close-button.png" alt=""/>
+                    <img src={closeButton} alt="close-button"/>
                 </div>
                 <form className="add-expense-form" method="post" onSubmit={addExpenseTransaction}>
                     <h3 className="add-expense-form-heading">Add a New Transaction</h3>
