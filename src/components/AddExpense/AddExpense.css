@@ -97,3 +97,9 @@
     background-color: rgb(82, 172, 202);
     border: 1px solid  rgb(82, 172, 202);
 }
+
+@media screen and (max-width: 768px) {
+    #add-expense-outer.display #add-expense-wrapper {
+        width: 85vw;
+    }
+}
