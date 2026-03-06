@@ -104,8 +104,7 @@
         justify-content: center;
     }
     #add-expense-outer.display #add-expense-wrapper {
-        width: 350px;
-        transform: unset;
-        left: 0;
+        width: 350px; 
+
     }
 }
