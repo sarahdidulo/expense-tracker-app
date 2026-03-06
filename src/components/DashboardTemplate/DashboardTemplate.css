@@ -233,6 +233,7 @@
     .db-logout-button {
         height: 0;
         height: 30px;
+        z-index: 40;
     }
     .db-content {
         width: 100%;
