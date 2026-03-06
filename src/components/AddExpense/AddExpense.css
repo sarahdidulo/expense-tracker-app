@@ -102,6 +102,7 @@
     #add-expense-outer.display {
         display: flex !important;
         justify-content: center;
+        left: 0;
     }
     #add-expense-outer.display #add-expense-wrapper {
         width: 350px;
