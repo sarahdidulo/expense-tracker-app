@@ -8,13 +8,29 @@ import './Overview.css';
 export default function Overview() {
 
     ChartJS.register(ArcElement, Tooltip, Legend);
+    const { filterTransactions } = useContext(CurrentUserContext);
+    const [ categories, setCategories ] = useState(['Groceries', 'Loan Payment', 'Utilities', 'Maintenance']);
+    
+    async function getData() {
+        let data = [];
+        categories.map(async (category, index) => {
+            let totalAmount = 0;
+            const data = await filterTransactions(category);
+            data.map((transaction, index) => {
+                totalAmount += transaction.amount;
+            })
+            console.log(`category : ${category} : total amount: ${totalAmount}`, )
+            data = [...data, totalAmount];
+        })
+        return data;
+    }
 
     const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: categories,
     datasets: [
         {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Expenses by Category',
+        data: getData(),
         backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',

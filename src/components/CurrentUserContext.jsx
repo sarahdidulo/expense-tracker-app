@@ -55,6 +55,7 @@ export const CurrentUserProvider = ({children}) => {
             const data = await response.json();
             console.log('returned data', data)
             setFilteredTransactions(data);
+            return data;
         } catch(err) {
             console.log("this is the error", err);
         }
