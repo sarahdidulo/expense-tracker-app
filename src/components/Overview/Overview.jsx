@@ -36,8 +36,13 @@ export default function Overview() {
     };
     return (
         <>
-            <h1>Overview Content</h1>
-            <Pie data={data} />;
+            <div className="overview-wrapper">
+                <h1>Overview Content</h1>
+                <div className="overview-chart">
+                     <Pie data={data} />
+                </div>
+            </div>
+            
         </>
  
     );
