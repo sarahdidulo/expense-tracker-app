@@ -30,7 +30,7 @@ export default function Overview() {
     datasets: [
         {
         label: 'Expenses by Category',
-        data: getData(),
+        data: '',
         backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -51,6 +51,11 @@ export default function Overview() {
         },
     ],
     };
+
+    useEffect(() => {
+        data.data = getData();
+    })
+
     return (
         <>
             <div className="overview-wrapper">
