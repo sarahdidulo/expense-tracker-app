@@ -8,7 +8,7 @@ import './Overview.css';
 export default function Overview() {
 
     ChartJS.register(ArcElement, Tooltip, Legend);
-    const { filterTransactions } = useContext(CurrentUserContext);
+    const { filterTransactions, clearFilteredTransactions } = useContext(CurrentUserContext);
     const [ categories, setCategories ] = useState(['Groceries', 'Loan Payment', 'Utilities', 'Maintenance']);
     
     async function getData() {
@@ -22,6 +22,7 @@ export default function Overview() {
             console.log(`category : ${category} : total amount: ${totalAmount}`, )
             data = [...data, totalAmount];
         })
+         clearFilteredTransactions();
         return data;
     }
 
