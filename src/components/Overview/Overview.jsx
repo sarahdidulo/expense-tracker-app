@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import './Overview.css';
 
 export default function Overview() {
 
