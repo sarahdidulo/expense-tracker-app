@@ -1,9 +1,6 @@
 .overview-chart {
     width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.overview-chart canvas {
     max-width: 400px;
+    display: flex;
+    justify-self: center;
 }
